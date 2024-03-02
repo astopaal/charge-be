@@ -1,6 +1,6 @@
-import { Station } from './station.interface';
+import Station from '../../stations/dto/create-station.dto';
 
-export interface User {
+export class User {
   id: string;
   email: string;
   name?: string;
