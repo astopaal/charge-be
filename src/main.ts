@@ -5,11 +5,12 @@ import {
   SwaggerDocumentOptions,
   SwaggerModule,
 } from '@nestjs/swagger';
+import { NestExpressApplication } from '@nestjs/platform-express';
 
 declare const module: any;
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
   const config = new DocumentBuilder()
     .setTitle('charge-up web api')
