@@ -914,39 +914,6 @@ export namespace Prisma {
    */
 
 
-  /**
-   * Count Type UserCountOutputType
-   */
-
-  export type UserCountOutputType = {
-    favorites: number
-  }
-
-  export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    favorites?: boolean | UserCountOutputTypeCountFavoritesArgs
-  }
-
-  // Custom InputTypes
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserCountOutputType
-     */
-    select?: UserCountOutputTypeSelect<ExtArgs> | null
-  }
-
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountFavoritesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: StationWhereInput
-  }
-
-
 
   /**
    * Models
@@ -998,6 +965,7 @@ export namespace Prisma {
     name: number
     birthYear: number
     hashedPassword: number
+    favorites: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -1038,6 +1006,7 @@ export namespace Prisma {
     name?: true
     birthYear?: true
     hashedPassword?: true
+    favorites?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -1135,6 +1104,7 @@ export namespace Prisma {
     name: string | null
     birthYear: number | null
     hashedPassword: string | null
+    favorites: string[]
     createdAt: Date
     updatedAt: Date
     _count: UserCountAggregateOutputType | null
@@ -1164,10 +1134,9 @@ export namespace Prisma {
     name?: boolean
     birthYear?: boolean
     hashedPassword?: boolean
+    favorites?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    favorites?: boolean | User$favoritesArgs<ExtArgs>
-    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
@@ -1176,27 +1145,22 @@ export namespace Prisma {
     name?: boolean
     birthYear?: boolean
     hashedPassword?: boolean
+    favorites?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-  }
-
-  export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    favorites?: boolean | User$favoritesArgs<ExtArgs>
-    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
 
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
-    objects: {
-      favorites: Prisma.$StationPayload<ExtArgs>[]
-    }
+    objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: string
       email: string
       name: string | null
       birthYear: number | null
       hashedPassword: string | null
+      favorites: string[]
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["user"]>
@@ -1591,7 +1555,6 @@ export namespace Prisma {
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    favorites<T extends User$favoritesArgs<ExtArgs> = {}>(args?: Subset<T, User$favoritesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StationPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1626,6 +1589,7 @@ export namespace Prisma {
     readonly name: FieldRef<"User", 'String'>
     readonly birthYear: FieldRef<"User", 'Int'>
     readonly hashedPassword: FieldRef<"User", 'String'>
+    readonly favorites: FieldRef<"User", 'String[]'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
   }
@@ -1642,10 +1606,6 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: UserInclude<ExtArgs> | null
-    /**
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
@@ -1661,10 +1621,6 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: UserInclude<ExtArgs> | null
-    /**
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
@@ -1679,10 +1635,6 @@ export namespace Prisma {
      * Select specific fields to fetch from the User
      */
     select?: UserSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: UserInclude<ExtArgs> | null
     /**
      * Filter, which User to fetch.
      */
@@ -1729,10 +1681,6 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: UserInclude<ExtArgs> | null
-    /**
      * Filter, which User to fetch.
      */
     where?: UserWhereInput
@@ -1778,10 +1726,6 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: UserInclude<ExtArgs> | null
-    /**
      * Filter, which Users to fetch.
      */
     where?: UserWhereInput
@@ -1822,10 +1766,6 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: UserInclude<ExtArgs> | null
-    /**
      * The data needed to create a User.
      */
     data: XOR<UserCreateInput, UserUncheckedCreateInput>
@@ -1851,10 +1791,6 @@ export namespace Prisma {
      * Select specific fields to fetch from the User
      */
     select?: UserSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: UserInclude<ExtArgs> | null
     /**
      * The data needed to update a User.
      */
@@ -1890,10 +1826,6 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: UserInclude<ExtArgs> | null
-    /**
      * The filter to search for the User to update in case it exists.
      */
     where: UserWhereUniqueInput
@@ -1916,10 +1848,6 @@ export namespace Prisma {
      * Select specific fields to fetch from the User
      */
     select?: UserSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: UserInclude<ExtArgs> | null
     /**
      * Filter which User to delete.
      */
@@ -1969,27 +1897,6 @@ export namespace Prisma {
 
 
   /**
-   * User.favorites
-   */
-  export type User$favoritesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Station
-     */
-    select?: StationSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: StationInclude<ExtArgs> | null
-    where?: StationWhereInput
-    orderBy?: StationOrderByWithRelationInput | StationOrderByWithRelationInput[]
-    cursor?: StationWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: StationScalarFieldEnum | StationScalarFieldEnum[]
-  }
-
-
-  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1997,10 +1904,6 @@ export namespace Prisma {
      * Select specific fields to fetch from the User
      */
     select?: UserSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: UserInclude<ExtArgs> | null
   }
 
 
@@ -2169,7 +2072,6 @@ export namespace Prisma {
     latitude?: boolean
     longitude?: boolean
     creatorUserId?: boolean
-    createdBy?: boolean | Station$createdByArgs<ExtArgs>
   }, ExtArgs["result"]["station"]>
 
   export type StationSelectScalar = {
@@ -2180,16 +2082,10 @@ export namespace Prisma {
     creatorUserId?: boolean
   }
 
-  export type StationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    createdBy?: boolean | Station$createdByArgs<ExtArgs>
-  }
-
 
   export type $StationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Station"
-    objects: {
-      createdBy: Prisma.$UserPayload<ExtArgs> | null
-    }
+    objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
@@ -2588,7 +2484,6 @@ export namespace Prisma {
   export interface Prisma__StationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    createdBy<T extends Station$createdByArgs<ExtArgs> = {}>(args?: Subset<T, Station$createdByArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2637,10 +2532,6 @@ export namespace Prisma {
      */
     select?: StationSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: StationInclude<ExtArgs> | null
-    /**
      * Filter, which Station to fetch.
      */
     where: StationWhereUniqueInput
@@ -2656,10 +2547,6 @@ export namespace Prisma {
      */
     select?: StationSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: StationInclude<ExtArgs> | null
-    /**
      * Filter, which Station to fetch.
      */
     where: StationWhereUniqueInput
@@ -2674,10 +2561,6 @@ export namespace Prisma {
      * Select specific fields to fetch from the Station
      */
     select?: StationSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: StationInclude<ExtArgs> | null
     /**
      * Filter, which Station to fetch.
      */
@@ -2724,10 +2607,6 @@ export namespace Prisma {
      */
     select?: StationSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: StationInclude<ExtArgs> | null
-    /**
      * Filter, which Station to fetch.
      */
     where?: StationWhereInput
@@ -2773,10 +2652,6 @@ export namespace Prisma {
      */
     select?: StationSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: StationInclude<ExtArgs> | null
-    /**
      * Filter, which Stations to fetch.
      */
     where?: StationWhereInput
@@ -2817,10 +2692,6 @@ export namespace Prisma {
      */
     select?: StationSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: StationInclude<ExtArgs> | null
-    /**
      * The data needed to create a Station.
      */
     data: XOR<StationCreateInput, StationUncheckedCreateInput>
@@ -2846,10 +2717,6 @@ export namespace Prisma {
      * Select specific fields to fetch from the Station
      */
     select?: StationSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: StationInclude<ExtArgs> | null
     /**
      * The data needed to update a Station.
      */
@@ -2885,10 +2752,6 @@ export namespace Prisma {
      */
     select?: StationSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: StationInclude<ExtArgs> | null
-    /**
      * The filter to search for the Station to update in case it exists.
      */
     where: StationWhereUniqueInput
@@ -2911,10 +2774,6 @@ export namespace Prisma {
      * Select specific fields to fetch from the Station
      */
     select?: StationSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: StationInclude<ExtArgs> | null
     /**
      * Filter which Station to delete.
      */
@@ -2964,22 +2823,6 @@ export namespace Prisma {
 
 
   /**
-   * Station.createdBy
-   */
-  export type Station$createdByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: UserInclude<ExtArgs> | null
-    where?: UserWhereInput
-  }
-
-
-  /**
    * Station without action
    */
   export type StationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2987,10 +2830,6 @@ export namespace Prisma {
      * Select specific fields to fetch from the Station
      */
     select?: StationSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: StationInclude<ExtArgs> | null
   }
 
 
@@ -3005,6 +2844,7 @@ export namespace Prisma {
     name: 'name',
     birthYear: 'birthYear',
     hashedPassword: 'hashedPassword',
+    favorites: 'favorites',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -3112,9 +2952,9 @@ export namespace Prisma {
     name?: StringNullableFilter<"User"> | string | null
     birthYear?: IntNullableFilter<"User"> | number | null
     hashedPassword?: StringNullableFilter<"User"> | string | null
+    favorites?: StringNullableListFilter<"User">
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
-    favorites?: StationListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -3123,9 +2963,9 @@ export namespace Prisma {
     name?: SortOrder
     birthYear?: SortOrder
     hashedPassword?: SortOrder
+    favorites?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    favorites?: StationOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -3137,9 +2977,9 @@ export namespace Prisma {
     name?: StringNullableFilter<"User"> | string | null
     birthYear?: IntNullableFilter<"User"> | number | null
     hashedPassword?: StringNullableFilter<"User"> | string | null
+    favorites?: StringNullableListFilter<"User">
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
-    favorites?: StationListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -3148,6 +2988,7 @@ export namespace Prisma {
     name?: SortOrder
     birthYear?: SortOrder
     hashedPassword?: SortOrder
+    favorites?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
@@ -3166,6 +3007,7 @@ export namespace Prisma {
     name?: StringNullableWithAggregatesFilter<"User"> | string | null
     birthYear?: IntNullableWithAggregatesFilter<"User"> | number | null
     hashedPassword?: StringNullableWithAggregatesFilter<"User"> | string | null
+    favorites?: StringNullableListFilter<"User">
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
@@ -3179,7 +3021,6 @@ export namespace Prisma {
     latitude?: StringFilter<"Station"> | string
     longitude?: StringFilter<"Station"> | string
     creatorUserId?: StringNullableFilter<"Station"> | string | null
-    createdBy?: XOR<UserNullableRelationFilter, UserWhereInput> | null
   }
 
   export type StationOrderByWithRelationInput = {
@@ -3188,7 +3029,6 @@ export namespace Prisma {
     latitude?: SortOrder
     longitude?: SortOrder
     creatorUserId?: SortOrder
-    createdBy?: UserOrderByWithRelationInput
   }
 
   export type StationWhereUniqueInput = Prisma.AtLeast<{
@@ -3200,7 +3040,6 @@ export namespace Prisma {
     latitude?: StringFilter<"Station"> | string
     longitude?: StringFilter<"Station"> | string
     creatorUserId?: StringNullableFilter<"Station"> | string | null
-    createdBy?: XOR<UserNullableRelationFilter, UserWhereInput> | null
   }, "id">
 
   export type StationOrderByWithAggregationInput = {
@@ -3231,9 +3070,9 @@ export namespace Prisma {
     name?: string | null
     birthYear?: number | null
     hashedPassword?: string | null
+    favorites?: UserCreatefavoritesInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
-    favorites?: StationCreateNestedManyWithoutCreatedByInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -3242,9 +3081,9 @@ export namespace Prisma {
     name?: string | null
     birthYear?: number | null
     hashedPassword?: string | null
+    favorites?: UserCreatefavoritesInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
-    favorites?: StationUncheckedCreateNestedManyWithoutCreatedByInput
   }
 
   export type UserUpdateInput = {
@@ -3252,9 +3091,9 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     birthYear?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
+    favorites?: UserUpdatefavoritesInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    favorites?: StationUpdateManyWithoutCreatedByNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -3262,9 +3101,9 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     birthYear?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
+    favorites?: UserUpdatefavoritesInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    favorites?: StationUncheckedUpdateManyWithoutCreatedByNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -3273,6 +3112,7 @@ export namespace Prisma {
     name?: string | null
     birthYear?: number | null
     hashedPassword?: string | null
+    favorites?: UserCreatefavoritesInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -3282,6 +3122,7 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     birthYear?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
+    favorites?: UserUpdatefavoritesInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -3291,6 +3132,7 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     birthYear?: NullableIntFieldUpdateOperationsInput | number | null
     hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
+    favorites?: UserUpdatefavoritesInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -3300,7 +3142,7 @@ export namespace Prisma {
     name: string
     latitude: string
     longitude: string
-    createdBy?: UserCreateNestedOneWithoutFavoritesInput
+    creatorUserId?: string | null
   }
 
   export type StationUncheckedCreateInput = {
@@ -3315,7 +3157,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     latitude?: StringFieldUpdateOperationsInput | string
     longitude?: StringFieldUpdateOperationsInput | string
-    createdBy?: UserUpdateOneWithoutFavoritesNestedInput
+    creatorUserId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StationUncheckedUpdateInput = {
@@ -3337,6 +3179,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     latitude?: StringFieldUpdateOperationsInput | string
     longitude?: StringFieldUpdateOperationsInput | string
+    creatorUserId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StationUncheckedUpdateManyInput = {
@@ -3389,6 +3232,14 @@ export namespace Prisma {
     isSet?: boolean
   }
 
+  export type StringNullableListFilter<$PrismaModel = never> = {
+    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    has?: string | StringFieldRefInput<$PrismaModel> | null
+    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
+    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -3400,22 +3251,13 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type StationListRelationFilter = {
-    every?: StationWhereInput
-    some?: StationWhereInput
-    none?: StationWhereInput
-  }
-
-  export type StationOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     email?: SortOrder
     name?: SortOrder
     birthYear?: SortOrder
     hashedPassword?: SortOrder
+    favorites?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -3516,11 +3358,6 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type UserNullableRelationFilter = {
-    is?: UserWhereInput | null
-    isNot?: UserWhereInput | null
-  }
-
   export type StationCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
@@ -3545,18 +3382,8 @@ export namespace Prisma {
     creatorUserId?: SortOrder
   }
 
-  export type StationCreateNestedManyWithoutCreatedByInput = {
-    create?: XOR<StationCreateWithoutCreatedByInput, StationUncheckedCreateWithoutCreatedByInput> | StationCreateWithoutCreatedByInput[] | StationUncheckedCreateWithoutCreatedByInput[]
-    connectOrCreate?: StationCreateOrConnectWithoutCreatedByInput | StationCreateOrConnectWithoutCreatedByInput[]
-    createMany?: StationCreateManyCreatedByInputEnvelope
-    connect?: StationWhereUniqueInput | StationWhereUniqueInput[]
-  }
-
-  export type StationUncheckedCreateNestedManyWithoutCreatedByInput = {
-    create?: XOR<StationCreateWithoutCreatedByInput, StationUncheckedCreateWithoutCreatedByInput> | StationCreateWithoutCreatedByInput[] | StationUncheckedCreateWithoutCreatedByInput[]
-    connectOrCreate?: StationCreateOrConnectWithoutCreatedByInput | StationCreateOrConnectWithoutCreatedByInput[]
-    createMany?: StationCreateManyCreatedByInputEnvelope
-    connect?: StationWhereUniqueInput | StationWhereUniqueInput[]
+  export type UserCreatefavoritesInput = {
+    set: string[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -3577,52 +3404,13 @@ export namespace Prisma {
     unset?: boolean
   }
 
+  export type UserUpdatefavoritesInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
-  }
-
-  export type StationUpdateManyWithoutCreatedByNestedInput = {
-    create?: XOR<StationCreateWithoutCreatedByInput, StationUncheckedCreateWithoutCreatedByInput> | StationCreateWithoutCreatedByInput[] | StationUncheckedCreateWithoutCreatedByInput[]
-    connectOrCreate?: StationCreateOrConnectWithoutCreatedByInput | StationCreateOrConnectWithoutCreatedByInput[]
-    upsert?: StationUpsertWithWhereUniqueWithoutCreatedByInput | StationUpsertWithWhereUniqueWithoutCreatedByInput[]
-    createMany?: StationCreateManyCreatedByInputEnvelope
-    set?: StationWhereUniqueInput | StationWhereUniqueInput[]
-    disconnect?: StationWhereUniqueInput | StationWhereUniqueInput[]
-    delete?: StationWhereUniqueInput | StationWhereUniqueInput[]
-    connect?: StationWhereUniqueInput | StationWhereUniqueInput[]
-    update?: StationUpdateWithWhereUniqueWithoutCreatedByInput | StationUpdateWithWhereUniqueWithoutCreatedByInput[]
-    updateMany?: StationUpdateManyWithWhereWithoutCreatedByInput | StationUpdateManyWithWhereWithoutCreatedByInput[]
-    deleteMany?: StationScalarWhereInput | StationScalarWhereInput[]
-  }
-
-  export type StationUncheckedUpdateManyWithoutCreatedByNestedInput = {
-    create?: XOR<StationCreateWithoutCreatedByInput, StationUncheckedCreateWithoutCreatedByInput> | StationCreateWithoutCreatedByInput[] | StationUncheckedCreateWithoutCreatedByInput[]
-    connectOrCreate?: StationCreateOrConnectWithoutCreatedByInput | StationCreateOrConnectWithoutCreatedByInput[]
-    upsert?: StationUpsertWithWhereUniqueWithoutCreatedByInput | StationUpsertWithWhereUniqueWithoutCreatedByInput[]
-    createMany?: StationCreateManyCreatedByInputEnvelope
-    set?: StationWhereUniqueInput | StationWhereUniqueInput[]
-    disconnect?: StationWhereUniqueInput | StationWhereUniqueInput[]
-    delete?: StationWhereUniqueInput | StationWhereUniqueInput[]
-    connect?: StationWhereUniqueInput | StationWhereUniqueInput[]
-    update?: StationUpdateWithWhereUniqueWithoutCreatedByInput | StationUpdateWithWhereUniqueWithoutCreatedByInput[]
-    updateMany?: StationUpdateManyWithWhereWithoutCreatedByInput | StationUpdateManyWithWhereWithoutCreatedByInput[]
-    deleteMany?: StationScalarWhereInput | StationScalarWhereInput[]
-  }
-
-  export type UserCreateNestedOneWithoutFavoritesInput = {
-    create?: XOR<UserCreateWithoutFavoritesInput, UserUncheckedCreateWithoutFavoritesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutFavoritesInput
-    connect?: UserWhereUniqueInput
-  }
-
-  export type UserUpdateOneWithoutFavoritesNestedInput = {
-    create?: XOR<UserCreateWithoutFavoritesInput, UserUncheckedCreateWithoutFavoritesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutFavoritesInput
-    upsert?: UserUpsertWithoutFavoritesInput
-    disconnect?: boolean
-    delete?: UserWhereInput | boolean
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutFavoritesInput, UserUpdateWithoutFavoritesInput>, UserUncheckedUpdateWithoutFavoritesInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -3766,144 +3554,11 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type StationCreateWithoutCreatedByInput = {
-    id?: string
-    name: string
-    latitude: string
-    longitude: string
-  }
-
-  export type StationUncheckedCreateWithoutCreatedByInput = {
-    id?: string
-    name: string
-    latitude: string
-    longitude: string
-  }
-
-  export type StationCreateOrConnectWithoutCreatedByInput = {
-    where: StationWhereUniqueInput
-    create: XOR<StationCreateWithoutCreatedByInput, StationUncheckedCreateWithoutCreatedByInput>
-  }
-
-  export type StationCreateManyCreatedByInputEnvelope = {
-    data: StationCreateManyCreatedByInput | StationCreateManyCreatedByInput[]
-  }
-
-  export type StationUpsertWithWhereUniqueWithoutCreatedByInput = {
-    where: StationWhereUniqueInput
-    update: XOR<StationUpdateWithoutCreatedByInput, StationUncheckedUpdateWithoutCreatedByInput>
-    create: XOR<StationCreateWithoutCreatedByInput, StationUncheckedCreateWithoutCreatedByInput>
-  }
-
-  export type StationUpdateWithWhereUniqueWithoutCreatedByInput = {
-    where: StationWhereUniqueInput
-    data: XOR<StationUpdateWithoutCreatedByInput, StationUncheckedUpdateWithoutCreatedByInput>
-  }
-
-  export type StationUpdateManyWithWhereWithoutCreatedByInput = {
-    where: StationScalarWhereInput
-    data: XOR<StationUpdateManyMutationInput, StationUncheckedUpdateManyWithoutCreatedByInput>
-  }
-
-  export type StationScalarWhereInput = {
-    AND?: StationScalarWhereInput | StationScalarWhereInput[]
-    OR?: StationScalarWhereInput[]
-    NOT?: StationScalarWhereInput | StationScalarWhereInput[]
-    id?: StringFilter<"Station"> | string
-    name?: StringFilter<"Station"> | string
-    latitude?: StringFilter<"Station"> | string
-    longitude?: StringFilter<"Station"> | string
-    creatorUserId?: StringNullableFilter<"Station"> | string | null
-  }
-
-  export type UserCreateWithoutFavoritesInput = {
-    id?: string
-    email: string
-    name?: string | null
-    birthYear?: number | null
-    hashedPassword?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type UserUncheckedCreateWithoutFavoritesInput = {
-    id?: string
-    email: string
-    name?: string | null
-    birthYear?: number | null
-    hashedPassword?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type UserCreateOrConnectWithoutFavoritesInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutFavoritesInput, UserUncheckedCreateWithoutFavoritesInput>
-  }
-
-  export type UserUpsertWithoutFavoritesInput = {
-    update: XOR<UserUpdateWithoutFavoritesInput, UserUncheckedUpdateWithoutFavoritesInput>
-    create: XOR<UserCreateWithoutFavoritesInput, UserUncheckedCreateWithoutFavoritesInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutFavoritesInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutFavoritesInput, UserUncheckedUpdateWithoutFavoritesInput>
-  }
-
-  export type UserUpdateWithoutFavoritesInput = {
-    email?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    birthYear?: NullableIntFieldUpdateOperationsInput | number | null
-    hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type UserUncheckedUpdateWithoutFavoritesInput = {
-    email?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    birthYear?: NullableIntFieldUpdateOperationsInput | number | null
-    hashedPassword?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type StationCreateManyCreatedByInput = {
-    id?: string
-    name: string
-    latitude: string
-    longitude: string
-  }
-
-  export type StationUpdateWithoutCreatedByInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    latitude?: StringFieldUpdateOperationsInput | string
-    longitude?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type StationUncheckedUpdateWithoutCreatedByInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    latitude?: StringFieldUpdateOperationsInput | string
-    longitude?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type StationUncheckedUpdateManyWithoutCreatedByInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    latitude?: StringFieldUpdateOperationsInput | string
-    longitude?: StringFieldUpdateOperationsInput | string
-  }
-
 
 
   /**
    * Aliases for legacy arg types
    */
-    /**
-     * @deprecated Use UserCountOutputTypeDefaultArgs instead
-     */
-    export type UserCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserCountOutputTypeDefaultArgs<ExtArgs>
     /**
      * @deprecated Use UserDefaultArgs instead
      */

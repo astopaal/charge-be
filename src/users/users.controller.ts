@@ -1,7 +1,14 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { UsersService } from './users.service';
 import { User } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
 
 @Controller('users')
 export class UsersController {
@@ -12,9 +19,26 @@ export class UsersController {
     return this.usersService.create(user);
   }
 
+  @Post('add-favorite')
+  async addFavoriteToUser(
+    @Body('userId') userId: string,
+    @Body('stationId') stationId: string,
+  ) {
+    return this.usersService.addFavorite(userId, stationId);
+  }
+
   @Get()
-  findAll() {
-    return this.usersService.findAll();
+  async findAll() {
+    try {
+      let users = await this.usersService.findAll();
+      console.log('====================================');
+      console.log(users);
+      console.log('====================================');
+      return users;
+    } catch (error) {
+      console.error(error);
+      return [];
+    }
   }
 
   @Get(':id')

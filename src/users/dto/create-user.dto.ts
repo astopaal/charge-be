@@ -6,7 +6,7 @@ export class User {
   name?: string;
   birthYear?: number;
   hashedPassword?: string;
-  favorites: Station[];
+  favorites: string[];
   createdAt: Date;
   updatedAt: Date;
 }

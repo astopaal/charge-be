@@ -14,15 +14,20 @@ export class UsersService {
       name: dto.name,
       birthYear: dto.birthYear,
       hashedPassword: dto.hashedPassword,
-      favorites: {
-        connect: dto.favorites.map((station: Station) => ({ id: station.id })),
-      },
+      favorites: dto.favorites,
       createdAt: dto.createdAt,
       updatedAt: dto.updatedAt,
     };
 
     return await this.prisma.user.create({
       data: userCreateInput,
+    });
+  }
+
+  async addFavorite(userId: string, stationId: string): Promise<User> {
+    return this.prisma.user.update({
+      where: { id: userId },
+      data: { favorites: { push: stationId } },
     });
   }
 

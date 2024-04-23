@@ -106,6 +106,7 @@ exports.Prisma.UserScalarFieldEnum = {
   name: 'name',
   birthYear: 'birthYear',
   hashedPassword: 'hashedPassword',
+  favorites: 'favorites',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
