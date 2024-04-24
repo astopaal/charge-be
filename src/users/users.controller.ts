@@ -41,18 +41,18 @@ export class UsersController {
     }
   }
 
+  @Get(':id/favorites')
+  async getUserFavorites(@Param('id') userId: string): Promise<string[] | null> {
+    return this.usersService.getFavoritesByUserId(userId);
+  }
+  
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.usersService.findOne(id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() user: User) {
-    return this.usersService.update(+id, user);
-  }
-
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.usersService.remove(+id);
+    return this.usersService.deleteUserById(id);
   }
 }

@@ -31,21 +31,27 @@ export class UsersService {
     });
   }
 
+  async getFavoritesByUserId(userId : string) : Promise<string[]> {
+    const user = await this.prisma.user.findUnique({
+      where: { id: userId },
+      select: { favorites: true },
+    });
+    return user?.favorites ?? null;
+  }
+
   async findAll() {
     return await this.prisma.user.findMany();
   }
 
-  async findOne(_id: string) {
+  async findOne(userId: string) {
     return this.prisma.user.findUnique({
-      where: { id: _id },
+      where: { id: userId },
     });
   }
 
-  update(id: number, user: User) {
-    return `This action updates a #${id} user`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async deleteUserById(userId: string) {
+    return this.prisma.user.delete({
+      where: { id: userId },
+    })
   }
 }

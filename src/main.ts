@@ -12,7 +12,7 @@ declare const module: any;
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   app.enableCors({
-    origin: ['https://YOUR-APP-NAME.vercel.app', 'http://localhost:3000'],
+    origin: ['https://charge-server.vercel.app/', 'http://localhost:3000'],
     methods: 'GET, HEAD, PUT, POST, DELETE, OPTIONS, PATCH',
     credentials: true,
     allowedHeaders:
