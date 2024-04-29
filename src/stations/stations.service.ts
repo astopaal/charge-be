@@ -27,17 +27,17 @@ export class StationsService {
     return await this.prisma.station.findMany();
   }
 
-  findOne(_id: string) {
-    return this.prisma.user.findUnique({
-      where: { id: _id },
+  findOne(stationId: string) {
+    return this.prisma.station.findUnique({
+      where: { id: stationId },
     });
   }
 
-  update(id: number, updateStationDto: UpdateStationDto) {
-    return `This action updates a #${id} station`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} station`;
+  remove(stationId: string) {
+    return this.prisma.station.delete({
+      where : {
+        id : stationId
+      }
+    })
   }
 }

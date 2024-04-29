@@ -30,13 +30,8 @@ export class StationsController {
     return this.stationsService.findOne(id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() station: Station) {
-    return this.stationsService.update(+id, station);
-  }
-
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.stationsService.remove(+id);
+    return this.stationsService.remove(id);
   }
 }
