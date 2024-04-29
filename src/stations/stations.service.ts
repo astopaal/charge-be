@@ -1,12 +1,13 @@
-import { Injectable } from '@nestjs/common';
-import Station from './dto/create-station.dto';
-import { User } from '../users/dto/create-user.dto';
-import { UpdateStationDto } from './dto/update-station.dto';
-import { PrismaService } from 'src/services/prisma/prisma.service';
+import { Injectable, Logger } from '@nestjs/common'
+import Station from './dto/create-station.dto'
+import { PrismaService } from 'src/services/prisma/prisma.service'
 
 @Injectable()
 export class StationsService {
-  constructor(private prisma: PrismaService) {}
+  logger : Logger
+  constructor(private prisma: PrismaService) {
+    this.logger = new Logger(StationsService.name)
+  }
 
   async create(dto: Station) {
     const stationCreateInput = {
@@ -16,21 +17,22 @@ export class StationsService {
       createdBy: dto.creatorUserId
         ? { connect: { id: dto.creatorUserId } }
         : undefined,
-    };
+    }
 
+    this.logger.log("station created : ", stationCreateInput)
     return await this.prisma.station.create({
       data: stationCreateInput,
-    });
+    })
   }
 
   async findAll() {
-    return await this.prisma.station.findMany();
+    return await this.prisma.station.findMany()
   }
 
   findOne(stationId: string) {
     return this.prisma.station.findUnique({
       where: { id: stationId },
-    });
+    })
   }
 
   remove(stationId: string) {
