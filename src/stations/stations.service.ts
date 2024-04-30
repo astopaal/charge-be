@@ -18,8 +18,6 @@ export class StationsService {
         ? { connect: { id: dto.creatorUserId } }
         : undefined,
     }
-
-    this.logger.log("station created : ", stationCreateInput)
     return await this.prisma.station.create({
       data: stationCreateInput,
     })
@@ -29,14 +27,14 @@ export class StationsService {
     return await this.prisma.station.findMany()
   }
 
-  findOne(stationId: string) {
-    return this.prisma.station.findUnique({
+  async findOne(stationId: string) {
+    return await this.prisma.station.findUnique({
       where: { id: stationId },
     })
   }
 
-  remove(stationId: string) {
-    return this.prisma.station.delete({
+  async remove(stationId: string) {
+    return await this.prisma.station.delete({
       where : {
         id : stationId
       }

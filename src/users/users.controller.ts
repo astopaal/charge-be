@@ -20,7 +20,7 @@ export class UsersController {
   @Post()
   async create(@Body() user: User) {
     try {
-      await this.usersService.create(user);
+      return await this.usersService.create(user);
     } catch (error) {
       this.logger.error(`${user.id} id numarali kullanici kaydedilirken bir hata olustu. Hata : ${error}`);
       throw new HttpException(
@@ -42,7 +42,7 @@ export class UsersController {
     @Body('stationId') stationId: string,
   ) {
     try {
-      await this.usersService.addFavorite(userId, stationId);
+      return await this.usersService.addFavorite(userId, stationId);
     } catch (error) {
       this.logger.error(`${stationId} id numarali istasyon kaydedilirken bir hata olustu. Kullanici id : ${userId} Hata :  ${error}`);
       throw new HttpException(
@@ -61,7 +61,7 @@ export class UsersController {
   @Get()
   async findAll() {
     try {
-      await this.usersService.findAll();
+      return await this.usersService.findAll();
     } catch (error) {
       this.logger.error(`Kullanicilar getirilirken bir hata olustu. Hata : ${error}`);
       throw new HttpException(
@@ -80,7 +80,7 @@ export class UsersController {
   @Get(':id/favorites')
   async getUserFavorites(@Param('id') userId: string) {
     try {
-      await this.usersService.getFavoritesByUserId(userId);
+      return await this.usersService.getFavoritesByUserId(userId);
     } catch (error) {
       this.logger.error(`${userId} id numarali kullanici favorileri getirilirken bir hata olustu. Hata : ${error}`);
       throw new HttpException(
@@ -99,7 +99,7 @@ export class UsersController {
   @Get(':id')
   async findOne(@Param('id') userId: string) {
     try {
-      await this.usersService.findOne(userId);
+      return await this.usersService.findOne(userId);
     } catch (error) {
       this.logger.error(`${userId} id numarali kullanici bilgileri getirilirken bir hata olustu. Hata : ${error}`);
       throw new HttpException(
@@ -118,7 +118,7 @@ export class UsersController {
   @Delete(':id')
   async remove(@Param('id') userId: string) {
     try {
-      await this.usersService.deleteUserById(userId);
+      return await this.usersService.deleteUserById(userId);
     } catch (error) {
       this.logger.error(`${userId} id numarali kullanici silinirken bir hata olustu. Hata : ${error}`);
       throw new HttpException(
