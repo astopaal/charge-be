@@ -126,7 +126,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\Samet\\Desktop\\charge-be\\prisma\\generated\\client",
+      "value": "C:\\Users\\techmax\\Desktop\\charge-be\\prisma\\generated\\client",
       "fromEnvVar": null
     },
     "config": {

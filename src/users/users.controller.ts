@@ -22,7 +22,9 @@ export class UsersController {
     try {
       return await this.usersService.create(user);
     } catch (error) {
-      this.logger.error(`${user.id} id numarali kullanici kaydedilirken bir hata olustu. Hata : ${error}`);
+      this.logger.error(
+        `${user.id} id numarali kullanici kaydedilirken bir hata olustu. Hata : ${error}`,
+      );
       throw new HttpException(
         {
           status: HttpStatus.INTERNAL_SERVER_ERROR,
@@ -44,7 +46,9 @@ export class UsersController {
     try {
       return await this.usersService.addFavorite(userId, stationId);
     } catch (error) {
-      this.logger.error(`${stationId} id numarali istasyon kaydedilirken bir hata olustu. Kullanici id : ${userId} Hata :  ${error}`);
+      this.logger.error(
+        `${stationId} id numarali istasyon kaydedilirken bir hata olustu. Kullanici id : ${userId} Hata :  ${error}`,
+      );
       throw new HttpException(
         {
           status: HttpStatus.INTERNAL_SERVER_ERROR,
@@ -63,7 +67,9 @@ export class UsersController {
     try {
       return await this.usersService.findAll();
     } catch (error) {
-      this.logger.error(`Kullanicilar getirilirken bir hata olustu. Hata : ${error}`);
+      this.logger.error(
+        `Kullanicilar getirilirken bir hata olustu. Hata : ${error}`,
+      );
       throw new HttpException(
         {
           status: HttpStatus.INTERNAL_SERVER_ERROR,
@@ -82,7 +88,9 @@ export class UsersController {
     try {
       return await this.usersService.getFavoritesByUserId(userId);
     } catch (error) {
-      this.logger.error(`${userId} id numarali kullanici favorileri getirilirken bir hata olustu. Hata : ${error}`);
+      this.logger.error(
+        `${userId} id numarali kullanici favorileri getirilirken bir hata olustu. Hata : ${error}`,
+      );
       throw new HttpException(
         {
           status: HttpStatus.INTERNAL_SERVER_ERROR,
@@ -101,7 +109,9 @@ export class UsersController {
     try {
       return await this.usersService.findOne(userId);
     } catch (error) {
-      this.logger.error(`${userId} id numarali kullanici bilgileri getirilirken bir hata olustu. Hata : ${error}`);
+      this.logger.error(
+        `${userId} id numarali kullanici bilgileri getirilirken bir hata olustu. Hata : ${error}`,
+      );
       throw new HttpException(
         {
           status: HttpStatus.INTERNAL_SERVER_ERROR,
@@ -120,7 +130,9 @@ export class UsersController {
     try {
       return await this.usersService.deleteUserById(userId);
     } catch (error) {
-      this.logger.error(`${userId} id numarali kullanici silinirken bir hata olustu. Hata : ${error}`);
+      this.logger.error(
+        `${userId} id numarali kullanici silinirken bir hata olustu. Hata : ${error}`,
+      );
       throw new HttpException(
         {
           status: HttpStatus.INTERNAL_SERVER_ERROR,

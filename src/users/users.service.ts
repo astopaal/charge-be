@@ -27,6 +27,7 @@ export class UsersService {
       where: { id: userId },
       data: { favorites: { push: stationId } },
     });
+    return `${stationId} station added successfully to user ${userId} favorites`
   }
 
   async getFavoritesByUserId(userId: string) {
@@ -34,7 +35,7 @@ export class UsersService {
       where: { id: userId },
       select: { favorites: true },
     });
-    (await user?.favorites) ?? null;
+    return user?.favorites ?? null;
   }
 
   async findAll() {
@@ -42,13 +43,13 @@ export class UsersService {
   }
 
   async findOne(userId: string) {
-    await this.prisma.user.findUnique({
+    return this.prisma.user.findUnique({
       where: { id: userId },
     });
   }
 
   async deleteUserById(userId: string) {
-    await this.prisma.user.delete({
+    return this.prisma.user.delete({
       where: { id: userId },
     });
   }
