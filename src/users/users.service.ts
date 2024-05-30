@@ -38,18 +38,18 @@ export class UsersService {
     return user?.favorites ?? null;
   }
 
-  async findAll() {
+  findAll() {
     return this.prisma.user.findMany();
   }
 
   async findOne(userId: string) {
-    return this.prisma.user.findUnique({
+    return await this.prisma.user.findUnique({
       where: { id: userId },
     });
   }
 
   async deleteUserById(userId: string) {
-    return this.prisma.user.delete({
+    return await this.prisma.user.delete({
       where: { id: userId },
     });
   }

@@ -1,6 +1,6 @@
 class AuthPayloadDto {
-    username: string;
-    password: string;
+    email: string;
+    hashedPassword: string;
 }
 
 export default AuthPayloadDto;

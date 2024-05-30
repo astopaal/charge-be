@@ -63,9 +63,9 @@ export class UsersController {
   }
 
   @Get()
-  async findAll() {
+  findAll() {
     try {
-      return await this.usersService.findAll();
+      return this.usersService.findAll();
     } catch (error) {
       this.logger.error(
         `Kullanicilar getirilirken bir hata olustu. Hata : ${error}`,
